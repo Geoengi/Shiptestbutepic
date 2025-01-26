@@ -34,7 +34,7 @@
 	delay = 1
 
 /obj/projectile/beam/hitscan/kalix
-	name = "concentrated energy"
+	name = "concentrated energy beam"
 	tracer_type = /obj/effect/projectile/tracer/kalix
 	muzzle_type = /obj/effect/projectile/muzzle/kalix
 	impact_type = /obj/effect/projectile/impact/kalix
@@ -66,7 +66,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/kalix/pgf , /obj/item/ammo_casing/energy/disabler/hitscan)
 
 /obj/projectile/beam/hitscan/kalix/pgf
-	name = "concentrated energy"
+	name = "concentrated energy beam"
 	tracer_type = /obj/effect/projectile/tracer/pgf
 	muzzle_type = /obj/effect/projectile/muzzle/pgf
 	impact_type = /obj/effect/projectile/impact/pgf
