@@ -1,11 +1,4 @@
 
-#define ZOOM_LOCK_AUTOZOOM_FREEMOVE 0
-#define ZOOM_LOCK_AUTOZOOM_ANGLELOCK 1
-#define ZOOM_LOCK_CENTER_VIEW 2
-#define ZOOM_LOCK_OFF 3
-
-#define AUTOZOOM_PIXEL_STEP_FACTOR 48
-
 #define AIMING_BEAM_ANGLE_CHANGE_THRESHOLD 0.1
 
 /obj/item/gun/energy/beam_rifle
@@ -27,6 +20,11 @@
 	charge_sections = 1
 	weapon_weight = WEAPON_HEAVY
 	w_class = WEIGHT_CLASS_BULKY
+	wield_slowdown = LASER_SNIPER_SLOWDOWN
+	wield_delay = 1.3 SECONDS
+	zoomable = TRUE
+	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
+	zoom_out_amt = 5
 	ammo_type = list(/obj/item/ammo_casing/energy/beam_rifle/hitscan)
 	internal_magazine = FALSE //prevents you from giving it an OP cell - WS Edit //shut up dumb nerd
 	default_ammo_type = /obj/item/stock_parts/cell/gun/large
@@ -64,18 +62,6 @@
 	var/projectile_setting_pierce = TRUE
 	var/delay = 25
 	var/lastfire = 0
-
-	//ZOOMING
-	var/zoom_current_view_increase = 0
-	///The radius you want to zoom by
-	var/zoom_target_view_increase = 9.5
-	var/zooming = FALSE
-	var/zoom_lock = ZOOM_LOCK_OFF
-	var/zooming_angle
-	var/current_zoom_x = 0
-	var/current_zoom_y = 0
-
-	var/datum/action/item_action/zoom_lock_action/zoom_lock_action
 	var/mob/listeningTo
 
 /obj/item/gun/energy/beam_rifle/debug
@@ -99,61 +85,10 @@
 	set_user()
 	return ..()
 
-/obj/item/gun/energy/beam_rifle/ui_action_click(mob/user, actiontype)
-	if(istype(actiontype, zoom_lock_action))
-		zoom_lock++
-		if(zoom_lock > 3)
-			zoom_lock = 0
-		switch(zoom_lock)
-			if(ZOOM_LOCK_AUTOZOOM_FREEMOVE)
-				to_chat(user, "<span class='boldnotice'>You switch [src]'s zooming processor to free directional.</span>")
-			if(ZOOM_LOCK_AUTOZOOM_ANGLELOCK)
-				to_chat(user, "<span class='boldnotice'>You switch [src]'s zooming processor to locked directional.</span>")
-			if(ZOOM_LOCK_CENTER_VIEW)
-				to_chat(user, "<span class='boldnotice'>You switch [src]'s zooming processor to center mode.</span>")
-			if(ZOOM_LOCK_OFF)
-				to_chat(user, "<span class='boldnotice'>You disable [src]'s zooming system.</span>")
-		reset_zooming()
-	else
-		..()
-
-/obj/item/gun/energy/beam_rifle/proc/set_autozoom_pixel_offsets_immediate(current_angle)
-	if(zoom_lock == ZOOM_LOCK_CENTER_VIEW || zoom_lock == ZOOM_LOCK_OFF)
-		return
-	current_zoom_x = sin(current_angle) + sin(current_angle) * AUTOZOOM_PIXEL_STEP_FACTOR * zoom_current_view_increase
-	current_zoom_y = cos(current_angle) + cos(current_angle) * AUTOZOOM_PIXEL_STEP_FACTOR * zoom_current_view_increase
-
-/obj/item/gun/energy/beam_rifle/proc/handle_zooming()
-	if(!zooming || !check_user())
-		return
-	current_user.client.view_size.setTo(zoom_target_view_increase)
-	zoom_current_view_increase = zoom_target_view_increase
-	set_autozoom_pixel_offsets_immediate(zooming_angle)
-
-/obj/item/gun/energy/beam_rifle/proc/start_zooming()
-	if(zoom_lock == ZOOM_LOCK_OFF)
-		return
-	zooming = TRUE
-
-/obj/item/gun/energy/beam_rifle/proc/stop_zooming(mob/user)
-	if(zooming)
-		zooming = FALSE
-		reset_zooming(user)
-
-/obj/item/gun/energy/beam_rifle/proc/reset_zooming(mob/user)
-	if(!user)
-		user = current_user
-	if(!user || !user.client)
-		return FALSE
-	user.client.view_size.zoomIn()
-	zoom_current_view_increase = 0
-	zooming_angle = 0
-	current_zoom_x = 0
-	current_zoom_y = 0
-
 /obj/item/gun/energy/beam_rifle/unique_action(mob/living/user)
 	projectile_setting_pierce = !projectile_setting_pierce
-	to_chat(user, "<span class='boldnotice'>You set \the [src] to [projectile_setting_pierce? "pierce":"impact"] mode.</span>")
+	playsound(user, 'sound/weapons/gun/general/selector.ogg', 100, TRUE)
+	to_chat(user, span_notice("You set the [src] to [projectile_setting_pierce? "pierce":"impact"] mode."))
 	aiming_beam()
 
 /obj/item/gun/energy/beam_rifle/proc/update_slowdown()
@@ -167,7 +102,6 @@
 	fire_delay = delay
 	current_tracers = list()
 	START_PROCESSING(SSfastprocess, src)
-	zoom_lock_action = new(src)
 
 /obj/item/gun/energy/beam_rifle/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
@@ -215,7 +149,6 @@
 		last_process = world.time
 		return
 	check_user()
-	handle_zooming()
 	aiming_time_left = max(0, aiming_time_left - (world.time - last_process))
 	aiming_beam(TRUE)
 	last_process = world.time
@@ -248,15 +181,12 @@
 	aiming = TRUE
 	process_aim()
 	aiming_beam(TRUE)
-	zooming_angle = lastangle
-	start_zooming()
 
 /obj/item/gun/energy/beam_rifle/proc/stop_aiming(mob/user)
 	set waitfor = FALSE
 	aiming_time_left = aiming_time
 	aiming = FALSE
 	QDEL_LIST(current_tracers)
-	stop_zooming(user)
 
 /obj/item/gun/energy/beam_rifle/proc/set_user(mob/user)
 	if(user == current_user)
@@ -276,9 +206,6 @@
 	if(aiming)
 		process_aim()
 		aiming_beam()
-		if(zoom_lock == ZOOM_LOCK_AUTOZOOM_FREEMOVE)
-			zooming_angle = lastangle
-			set_autozoom_pixel_offsets_immediate(zooming_angle)
 	return ..()
 
 /obj/item/gun/energy/beam_rifle/onMouseDown(object, location, params, mob/mob)
