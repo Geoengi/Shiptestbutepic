@@ -4,8 +4,8 @@
 /obj/item/gun/energy/beam_rifle
 	name = "particle acceleration rifle"
 	desc = "An energy-based, anti-material marksman rifle that uses highly charged particle beams moving at extreme velocities to decimate whatever is unfortunate enough to be targeted by one. \
-		span_boldnotice("Hold down left click to charge; when the weapon is fully charged (the tracer goes from red to green as it charges), release to fire. Moving while charging or \
-		changing where you're pointing at will delay the charging process depending on how much you changed.")
+		<span class='boldnotice'>Hold down left click to charge; when the weapon is fully charged (the tracer goes from red to green as it charges), release to fire. Moving while charging or \
+		changing where you're pointing at will delay the charging process depending on how much you changed.</span>"
 	icon = 'icons/obj/guns/energy.dmi'
 	icon_state = "esniper"
 	item_state = "esniper"
@@ -372,7 +372,7 @@
 	new /obj/effect/temp_visual/explosion/fast(epicenter)
 	for(var/mob/living/L in range(aoe_mob_range, epicenter))		//handle aoe mob damage
 		L.adjustFireLoss(aoe_mob_damage)
-		to_chat(L, span_userdanger("The [src] sears you!")
+		to_chat(L, "<span class='userdanger'>\The [src] sears you!</span>")
 	for(var/turf/T in range(aoe_fire_range, epicenter))		//handle aoe fire
 		if(prob(aoe_fire_chance))
 			new /obj/effect/hotspot(T)
