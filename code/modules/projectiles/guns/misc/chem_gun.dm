@@ -19,6 +19,9 @@
 	gun_firemodes = list(FIREMODE_SEMIAUTO)
 	default_firemode = FIREMODE_SEMIAUTO
 
+	wield_slowdown = PISTOL_SLOWDOWN
+	aimed_wield_slowdown = PISTOL_AIM_SLOWDOWN
+
 /obj/item/gun/chem/Initialize()
 	. = ..()
 	chambered = new /obj/item/ammo_casing/chemgun(src)

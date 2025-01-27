@@ -15,6 +15,9 @@
 	gun_firemodes = list(FIREMODE_SEMIAUTO)
 	default_firemode = FIREMODE_SEMIAUTO
 
+	wield_slowdown = HEAVY_RIFLE_SLOWDOWN
+	aimed_wield_slowdown = HEAVY_AIM_SLOWDOWN
+
 /obj/item/gun/grenadelauncher/examine(mob/user)
 	. = ..()
 	. += "[grenades.len] / [max_grenades] grenades loaded."

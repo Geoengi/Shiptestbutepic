@@ -13,6 +13,9 @@
 	gun_firemodes = list(FIREMODE_SEMIAUTO)
 	default_firemode = FIREMODE_SEMIAUTO
 
+	wield_slowdown = HEAVY_RIFLE_SLOWDOWN
+	aimed_wield_slowdown = HEAVY_AIM_SLOWDOWN
+
 	var/hugbox = TRUE
 	var/max_power = INFINITY
 	var/reaction_volume_mod = 0

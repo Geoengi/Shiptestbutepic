@@ -19,6 +19,9 @@
 	gun_firemodes = list(FIREMODE_SEMIAUTO)
 	default_firemode = FIREMODE_SEMIAUTO
 
+	wield_slowdown = SMG_SLOWDOWN
+	aimed_wield_slowdown = SMG_AIM_SLOWDOWN
+
 /obj/item/gun/medbeam/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)

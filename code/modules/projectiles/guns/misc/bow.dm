@@ -22,6 +22,9 @@
 	gun_firemodes = list(FIREMODE_SEMIAUTO)
 	default_firemode = FIREMODE_SEMIAUTO
 
+	wield_slowdown = LIGHT_RIFLE_SLOWDOWN
+	aimed_wield_slowdown = RIFLE_AIM_SLOWDOWN
+
 	var/drawn = FALSE
 
 /obj/item/gun/ballistic/bow/update_icon_state()
