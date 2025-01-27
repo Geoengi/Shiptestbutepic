@@ -12,6 +12,9 @@
 	var/max_grenades = 3
 	custom_materials = list(/datum/material/iron=2000)
 
+	gun_firemodes = list(FIREMODE_SEMIAUTO)
+	default_firemode = FIREMODE_SEMIAUTO
+
 /obj/item/gun/grenadelauncher/examine(mob/user)
 	. = ..()
 	. += "[grenades.len] / [max_grenades] grenades loaded."

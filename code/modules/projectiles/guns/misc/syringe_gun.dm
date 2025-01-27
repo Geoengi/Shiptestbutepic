@@ -12,6 +12,9 @@
 	var/list/syringes = list()
 	var/max_syringes = 1
 
+	gun_firemodes = list(FIREMODE_SEMIAUTO)
+	default_firemode = FIREMODE_SEMIAUTO
+
 /obj/item/gun/syringe/Initialize()
 	. = ..()
 	chambered = new /obj/item/ammo_casing/syringegun(src)

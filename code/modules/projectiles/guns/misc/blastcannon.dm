@@ -10,6 +10,9 @@
 	item_flags = NONE
 	randomspread = FALSE
 
+	gun_firemodes = list(FIREMODE_SEMIAUTO)
+	default_firemode = FIREMODE_SEMIAUTO
+
 	var/hugbox = TRUE
 	var/max_power = INFINITY
 	var/reaction_volume_mod = 0

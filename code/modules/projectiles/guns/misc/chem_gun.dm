@@ -16,6 +16,9 @@
 	var/max_syringes = 4
 	var/last_synth = 0
 
+	gun_firemodes = list(FIREMODE_SEMIAUTO)
+	default_firemode = FIREMODE_SEMIAUTO
+
 /obj/item/gun/chem/Initialize()
 	. = ..()
 	chambered = new /obj/item/ammo_casing/chemgun(src)

@@ -18,6 +18,10 @@
 	w_class = WEIGHT_CLASS_BULKY
 	internal_magazine = TRUE
 	bolt_type = BOLT_TYPE_NO_BOLT
+
+	gun_firemodes = list(FIREMODE_SEMIAUTO)
+	default_firemode = FIREMODE_SEMIAUTO
+
 	var/drawn = FALSE
 
 /obj/item/gun/ballistic/bow/update_icon_state()

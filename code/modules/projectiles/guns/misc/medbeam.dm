@@ -16,6 +16,9 @@
 
 	weapon_weight = WEAPON_MEDIUM
 
+	gun_firemodes = list(FIREMODE_SEMIAUTO)
+	default_firemode = FIREMODE_SEMIAUTO
+
 /obj/item/gun/medbeam/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
