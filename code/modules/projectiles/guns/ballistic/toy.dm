@@ -14,6 +14,7 @@
 		/obj/item/ammo_box/magazine/toy/smg,
 	)
 	fire_sound = 'sound/items/syringeproj.ogg'
+	light_range = 0
 	force = 0
 	throwforce = 0
 	burst_size = 3
@@ -24,7 +25,6 @@
 	recoil_unwielded = -10
 	has_safety = FALSE
 	safety = FALSE
-	light_range = 0
 
 	gun_firemodes = list(FIREMODE_BURST)
 	default_firemode = FIREMODE_BURST
@@ -95,6 +95,7 @@
 		/obj/item/ammo_box/magazine/internal/shot/toy/crossbow,
 	)
 	fire_sound = 'sound/items/syringeproj.ogg'
+	light_range = 0
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
 	manufacturer = MANUFACTURER_DONKCO
@@ -102,4 +103,3 @@
 	recoil_unwielded = -10
 	has_safety = FALSE
 	safety = FALSE
-	light_range = 0
