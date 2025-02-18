@@ -3,7 +3,7 @@
 	desc = "While pretty finely crafted, surely you can find something better to use in the current year."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "bow"
-	item_state = "pipebow"
+	item_state = "bow"
 	load_sound = null
 	fire_sound = 'sound/weapons/bowfire.ogg'
 	slot_flags = ITEM_SLOT_BACK
@@ -18,12 +18,14 @@
 	w_class = WEIGHT_CLASS_BULKY
 	internal_magazine = TRUE
 	bolt_type = BOLT_TYPE_NO_BOLT
+	has_safety = FALSE
+	safety = FALSE
+	light_range = 0
 
 	gun_firemodes = list(FIREMODE_SEMIAUTO)
 	default_firemode = FIREMODE_SEMIAUTO
 
 	wield_slowdown = LIGHT_RIFLE_SLOWDOWN
-	aimed_wield_slowdown = RIFLE_AIM_SLOWDOWN
 
 	var/drawn = FALSE
 
@@ -94,7 +96,7 @@
 	arrow_path = /obj/item/ammo_casing/caseless/arrow/despawning
 
 /obj/item/gun/ballistic/bow/ashen
-	name = "Bone Bow"
+	name = "bone bow"
 	desc = "Some sort of primitive projectile weapon made of bone and wrapped sinew."
 	icon_state = "ashenbow"
 	item_state = "ashenbow"
@@ -102,7 +104,7 @@
 	force = 8
 
 /obj/item/gun/ballistic/bow/pipe
-	name = "Pipe Bow"
+	name = "pipe bow"
 	desc = "A crude projectile weapon made from silk string, pipe and lots of bending."
 	icon_state = "pipebow"
 	mob_overlay_icon = 'icons/mob/clothing/back.dmi'

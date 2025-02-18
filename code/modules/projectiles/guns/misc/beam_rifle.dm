@@ -5,7 +5,7 @@
 	name = "particle acceleration rifle"
 	desc = "An energy-based, anti-material marksman rifle that uses highly charged particle beams moving at extreme velocities to decimate whatever is unfortunate enough to be targeted by one. \
 		<span class='boldnotice'>Hold down left click to charge; when the weapon is fully charged (the tracer goes from red to green as it charges), release to fire. Moving while charging or \
-		changing where you're pointing at will delay the charging process depending on how much you changed.</span>"
+		changing where you're aiming at will delay the charging process depending on how much you changed.</span>"
 	icon = 'icons/obj/guns/energy.dmi'
 	icon_state = "esniper"
 	item_state = "esniper"

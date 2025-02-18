@@ -9,6 +9,7 @@
 	force = 4
 	custom_materials = list(/datum/material/iron=2000)
 	fire_sound = 'sound/items/syringeproj.ogg'
+	light_range = 0
 	var/list/syringes = list()
 	var/max_syringes = 1
 

@@ -22,7 +22,12 @@
 	manufacturer = MANUFACTURER_NANOTRASEN
 	recoil = -10 //its a toy...
 	recoil_unwielded = -10
+	has_safety = FALSE
+	safety = FALSE
+	light_range = 0
 
+	gun_firemodes = list(FIREMODE_BURST)
+	default_firemode = FIREMODE_BURST
 
 /obj/item/gun/ballistic/automatic/toy/pistol
 	name = "foam force pistol"
@@ -95,3 +100,6 @@
 	manufacturer = MANUFACTURER_DONKCO
 	recoil = -10 //its a toy...
 	recoil_unwielded = -10
+	has_safety = FALSE
+	safety = FALSE
+	light_range = 0
