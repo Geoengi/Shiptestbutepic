@@ -17,7 +17,7 @@
 
 /obj/item/ammo_casing/caseless/arrow/ash
 	name = "ashen arrow"
-	desc = "An arrow made from wood, hardened by fire"
+	desc = "An arrow made from wood, hardened by fire."
 	icon_state = "ashenarrow"
 	projectile_type = /obj/projectile/bullet/reusable/arrow/ash
 
@@ -29,6 +29,6 @@
 
 /obj/item/ammo_casing/caseless/arrow/bronze
 	name = "bronze arrow"
-	desc = "An arrow made from wood. tipped with bronze."
+	desc = "An arrow made from wood, tipped with bronze."
 	icon_state = "bronzearrow"
 	projectile_type = /obj/projectile/bullet/reusable/arrow/bronze

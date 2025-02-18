@@ -213,3 +213,11 @@
 	reqs = list(/obj/item/stack/sheet/sinew = 2,
 				/obj/item/stack/sheet/animalhide/goliath_hide = 2)
 	category = CAT_CLOTHING
+
+/datum/crafting_recipe/quiver
+	name = "Quiver"
+	result = /obj/item/storage/bag/quiver/empty
+	time = 80
+	reqs = list(/obj/item/stack/sheet/leather = 3,
+				/obj/item/stack/sheet/sinew = 4)
+	category = CAT_CLOTHING
